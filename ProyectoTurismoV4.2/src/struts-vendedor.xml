@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts-vendedor" extends="demo" namespace="/vendedor">	
+
+		<action name="inicializarVendedor">		
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_listadoVendedor</result>
+		</action>
+		
+		<action name="nuevoVendedor" class="action.VendedorAction">
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_edicionVendedor</result>
+		</action>
+
+		<action name="buscarVendedor" class="action.VendedorAction"
+			method="buscar">
+			<result type="tiles">d_listadoVendedor</result>
+			<result name="input" type="tiles">d_listadoVendedor</result>
+		</action>
+
+		<action name="cargarVendedor" class="action.VendedorAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionVendedor</result>
+		</action>
+
+		<action name="editarVendedor" class="action.VendedorAction"
+			method="editar">
+			<result type="tiles">d_listadoVendedor</result>
+			<result name="input" type="tiles">d_edicionVendedor</result>
+		</action>
+
+		<action name="eliminarVendedor" class="action.VendedorAction"
+			method="eliminar">
+			<result type="tiles">d_listadoVendedor</result>
+		</action>
+
+		<action name="detalleVendedor" class="action.VendedorAction"
+			method="detalle">
+			<result type="tiles">d_detalleVendedor</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.custom.i18n.resources" value="recursos.textos" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+	 			
+	<include file="struts-empleado.xml"/>
+	<include file="struts-vendedor.xml"/>
+	<include file="struts-seguridad.xml"/>
+	
+	<package name="demo" extends="struts-default">
+	
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+		</result-types>
+
+		<interceptors>
+			<interceptor name="cronometro" class="interceptor.CronometroInterceptor"/>
+			
+			<interceptor-stack name="pitStack">
+				<interceptor-ref name="cronometro"/>
+				<interceptor-ref name="defaultStack">
+					<param name="prepare.excludeMethods">buscar,eliminar</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			
+			<interceptor-stack name="pitParamsPrepareParamsStack">
+				<interceptor-ref name="cronometro"/>
+				<interceptor-ref name="paramsPrepareParamsStack"/>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="pitStack" />
+		
+		<global-results>		
+			<result name="null">/WEB-INF/paginas/error/nulo.jsp</result>
+			<result name="noDisponible">/WEB-INF/paginas/error/noDisponible.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>		
+			<exception-mapping result="null" 
+							   exception="java.lang.NullPointerException">
+			</exception-mapping>
+				
+			<exception-mapping result="noDisponible" 
+							   exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="idioma">
+			<result>/WEB-INF/paginas/login.jsp</result>
+		</action>
+		<action name="inicio">
+			<result>/WEB-INF/paginas/login.jsp</result>
+		</action>
+
+		<action name="mostrarFoto"	class="action.FotoAction">
+			<result type="stream">
+				<param name="inputName">foto</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

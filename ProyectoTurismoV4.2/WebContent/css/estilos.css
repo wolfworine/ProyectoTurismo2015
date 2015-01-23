@@ -1,0 +1,11 @@
+.par {background-color: #DCDCDC;}
+.impar {background-color: white;}
+.titulos {background-color: #B0C4CE;}
+
+.tabla {
+	border-collapse: collapse all;
+	border: 1px solid #8F99EF;
+}
+
+.tabla td { font-size:14px; padding-right:10px; }
+.tabla th { text-align:left; font-weight:bold; font-size:14px; }
