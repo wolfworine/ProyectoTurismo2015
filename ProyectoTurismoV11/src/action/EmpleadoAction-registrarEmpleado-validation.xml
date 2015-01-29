@@ -1,0 +1,61 @@
+<!DOCTYPE validators PUBLIC
+"-//Apache Struts//XWork Validator 1.0.3//EN"
+"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+
+	<!-- <field name="empleado.nombre">
+		<field-validator type="requiredstring"  short-circuit="true">
+			<message key="campo.requerido"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">45</param>
+			<message key="campo.longitud.maxima"/>
+		</field-validator>
+	</field>
+	<field name="empleado.apellidoPaterno">
+		<field-validator type="requiredstring"  short-circuit="true">
+			<message key="campo.requerido"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">45</param>
+			<message key="campo.longitud.maxima"/>
+		</field-validator>
+	</field>
+	
+	<field name="empleado.apellidoMaterno">
+		<field-validator type="requiredstring"  short-circuit="true">
+			<message key="campo.requerido"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">45</param>
+			<message key="campo.longitud.maxima"/>
+		</field-validator>
+	</field> -->
+
+	<!-- <field name="empleado.fechaNacimiento">
+		<field-validator type="required">
+			<message key="campo.requerido"/>
+		</field-validator>
+	</field> -->
+
+	<field name="empleado.labores">
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<message key="campo.longitud.minima"/>
+		</field-validator>
+	</field>
+	
+	<!-- <field name="empleado.email">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>El correo electrónico es un campo obligatorio.</message>
+        </field-validator>
+        
+        <field-validator type="email">
+            <message>El correo electrónico está en un formato inválido.</message>
+        </field-validator>
+    </field> -->
+
+</validators>

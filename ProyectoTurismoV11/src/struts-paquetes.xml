@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts-paquetes" extends="demo" namespace="/paquetes">	
+
+		<action name="inicializarPaquetes">		
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_listadoPaquetes</result>
+		</action>
+		
+		<action name="nuevoPaquetes" class="action.PaquetesAction">
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_edicionPaquetes</result>
+		</action>		
+		
+
+		<action name="buscarPaquetes" class="action.PaquetesAction"
+			method="buscar">
+			<result type="tiles">d_listadoPaquetes</result>
+			<result name="input" type="tiles">d_listadoPaquetes</result>
+		</action>
+
+		<action name="cargarPaquetes" class="action.PaquetesAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionPaquetes</result>
+		</action>
+
+		<action name="editarPaquetes" class="action.PaquetesAction"
+			method="editar">
+			<result type="tiles">d_listadoPaquetes</result>
+			<result name="input" type="tiles">d_edicionPaquetes</result>
+		</action>
+
+		<action name="eliminarPaquetes" class="action.PaquetesAction"
+			method="eliminar">
+			<result type="tiles">d_listadoPaquetes</result>
+		</action>
+
+		<action name="detallePaquetes" class="action.PaquetesAction"
+			method="detalle">
+			<result type="tiles">d_detallePaquetes</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="persistencia/mybatis/config/config.properties"/>
+	
+	<settings>
+		<setting name="defaultStatementTimeout" value="2"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="model.Cargo" alias="cargo"/>
+		<typeAlias type="model.Distrito" alias="distrito"/>
+		<typeAlias type="model.Vendedor" alias="vendedor"/>
+		<typeAlias type="model.Empleado" alias="empleado"/>
+		<typeAlias type="model.Usuario" alias="usuario"/> 
+		<typeAlias type="model.Cliente" alias="cliente"/>
+		<typeAlias type="model.Ofertas" alias="ofertas"/> 
+		<typeAlias type="model.Paquetes" alias="paquetes"/>
+		<typeAlias type="model.Pagos" alias="pagos"/> 
+	</typeAliases>
+	
+    <environments default="clase">
+    
+        <environment id="clase">
+            <transactionManager type="JDBC"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="java:comp/env/jdbc/bd_calpit"/>
+            </dataSource>  
+        </environment>
+    </environments>
+    
+    <mappers>
+        <package name="persistencia.mybatis.mapper"/>    
+    </mappers>
+    
+</configuration>

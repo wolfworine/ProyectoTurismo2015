@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts-ofertas" extends="demo" namespace="/ofertas">	
+
+		<action name="inicializarOfertas">		
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_listadoOfertas</result>
+		</action>
+		
+		<action name="nuevoOfertas" class="action.OfertasAction">
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_edicionOfertas</result>
+		</action>
+
+		<action name="buscarOfertas" class="action.OfertasAction"
+			method="buscar">
+			<result type="tiles">d_listadoOfertas</result>
+			<result name="input" type="tiles">d_listadoOfertas</result>
+		</action>
+
+		<action name="cargarOfertas" class="action.OfertasAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionOfertas</result>
+		</action>
+
+		<action name="editarOfertas" class="action.OfertasAction"
+			method="editar">
+			<result type="tiles">d_listadoOfertas</result>
+			<result name="input" type="tiles">d_edicionOfertas</result>
+		</action>
+
+		<action name="eliminarOfertas" class="action.OfertasAction"
+			method="eliminar">
+			<result type="tiles">d_listadoOfertas</result>
+		</action>
+
+		<action name="detalleOfertas" class="action.OfertasAction"
+			method="detalle">
+			<result type="tiles">d_detalleOfertas</result>
+		</action>
+	</package>
+</struts>

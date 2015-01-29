@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.EmpleadoMapper">
+
+ <!-- <resultMap type="empleado" id="rmEmpleadoBusqueda">
+   		<id column="COD_EMP" property="codigo"/>
+        <result column="NOM_EMP" property="nombre"/> 
+        <result column="APP_EMP" property="apellidoPaterno"/> 
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmEmpleadoBusqueda" parameterType="empleado">
+  		 SELECT COD_EMP,NOM_EMP, APP_EMP
+   		 FROM TB_EMPLEADO
+   		 WHERE NOM_EMP LIKE #{nombre}
+  </select>  -->
+
+ <resultMap type="empleado" id="rmEmpleadoBusqueda">
+   		<id column="COD_EMP" property="codigo"/>  
+		<result column="usu_emp" property="usuario"/> 
+        <result column="nom_emp" property="nombre"/> 
+        <result column="app_emp" property="apellidoPaterno"/>
+        <result column="apm_emp" property="apellidoMaterno"/> 
+        <result column="est_emp" property="estadoCivil"/> 
+        <result column="dir_emp" property="direccion"/> 
+        <result column="sex_emp" property="genero"/> 
+        <result column="dni_emp" property="dni"/>          
+        <result column="fcn_emp" property="fechaNacimiento"/> 
+        <result column="fci_emp" property="fechaIngreso"/> 
+        <result column="lab_emp" property="labores"/> 
+        <result column="cla_emp" property="clave"/> 
+        <result column="mai_emp" property="email"/>
+        <result column="fot_emp" property="foto"/>       
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmEmpleadoBusqueda" parameterType="empleado">
+  		 SELECT COD_EMP, usu_emp, nom_emp, app_emp,apm_emp ,est_emp,dir_emp , sex_emp, dni_emp,cod_car , fcn_emp, fci_emp,lab_emp ,cla_emp ,mai_emp ,fot_emp
+   		 FROM TB_EMPLEADO WHERE NOM_EMP LIKE #{nombre}
+  </select> 
+  
+
+  <!-- Result Map para la vista de EDITAR -->
+  <resultMap type="empleado" id="rmEmpleadoByPK">
+   		<id column="COD_EMP" property="codigo"/> 
+   		
+		<result column="usu_emp" property="usuario"/> 
+           
+   		<result column="NOM_EMP" property="nombre"/> 
+        <result column="APP_EMP" property="apellidoPaterno"/>
+        
+        <result column="apm_emp" property="apellidoMaterno"/> 
+        <result column="est_emp" property="estadoCivil"/> 
+        <result column="dir_emp" property="direccion"/>        
+        
+        <result column="SEX_EMP" property="genero"/> 
+        
+         <result column="sex_emp" property="genero"/> 
+        <result column="dni_emp" property="dni"/>          
+        <result column="fcn_emp" property="fechaNacimiento"/> 
+        <result column="fci_emp" property="fechaIngreso"/> 
+        <result column="lab_emp" property="labores"/> 
+        <result column="cla_emp" property="clave"/> 
+        <result column="mai_emp" property="email"/>
+        <result column="fot_emp" property="foto"/> 
+        
+        
+        
+		<association property="cargo" javaType="cargo">
+            <result column="COD_CAR" property="codigo"/>
+        </association>   
+  </resultMap>
+      
+  
+   <select id="obtener" resultMap="rmEmpleadoByPK" parameterType="integer">			
+			SELECT COD_EMP, usu_emp, nom_emp, app_emp,apm_emp ,est_emp,dir_emp , sex_emp, dni_emp,cod_car , fcn_emp, fci_emp,lab_emp ,cla_emp ,mai_emp ,fot_emp
+   		 FROM TB_EMPLEADO WHERE COD_EMP=#{codigo}
+  </select>
+  
+
+    
+  <resultMap type="empleado" id="rmEmpleadoDetalle" >
+   		<id column="cod_emp" property="codigo"/>
+   		<result column="usu_emp" property="usuario"/> 
+        <result column="nom_emp" property="nombre"/> 
+        <result column="app_emp" property="apellidoPaterno"/>
+        <result column="apm_emp" property="apellidoMaterno"/> 
+        <result column="est_emp" property="estadoCivil"/> 
+        <result column="dir_emp" property="direccion"/> 
+        <result column="sex_emp" property="genero"/> 
+        <result column="dni_emp" property="dni"/>          
+        <result column="fcn_emp" property="fechaNacimiento"/> 
+        <result column="fci_emp" property="fechaIngreso"/> 
+        <result column="lab_emp" property="labores"/> 
+        <result column="cla_emp" property="clave"/> 
+        <result column="mai_emp" property="email"/>         
+        <result column="fot_emp" property="foto"/> 
+        <association property="cargo" javaType="cargo">
+            <result column="des_Car" property="descripcion"/>
+        </association>          
+   </resultMap>   
+      
+   
+    <select id="obtenerDetalle" resultMap="rmEmpleadoDetalle" parameterType="integer">
+  			SELECT v.cod_emp, v.usu_emp, v.nom_emp, v.app_emp,v.apm_emp ,v.est_emp,v.dir_emp, 
+  			v.sex_emp, v.dni_emp, d.des_car, v.fcn_emp, v.fci_emp, v.lab_emp, v.cla_emp,
+  			v.mai_emp ,v.fot_emp
+  			FROM TB_EMPLEADO v, TB_CARGO d
+			WHERE v.COD_CAR  = d.COD_CAR
+			and v.cod_emp=#{codigo} 
+  </select>
+  
+   <select id="obtenerDetalle2" resultMap="rmEmpleadoDetalle" parameterType="integer">
+  			SELECT v.cod_emp, v.usu_emp, v.nom_emp, v.app_emp,v.apm_emp ,v.est_emp,v.dir_emp, 
+  			v.sex_emp, v.dni_emp, d.des_car, v.fcn_emp, v.fci_emp, v.lab_emp, v.cla_emp,
+  			v.mai_emp ,v.fot_emp
+  			FROM TB_EMPLEADO v, TB_CARGO d
+			WHERE v.COD_CAR  = d.COD_CAR
+			and v.usu_emp=#{usuario} 
+  </select>
+ 
+
+ 
+    <insert id="insertar" parameterType="empleado">    
+    	INSERT INTO TB_EMPLEADO(usu_emp, nom_emp, app_emp,apm_emp ,est_emp,dir_emp , sex_emp, dni_emp,cod_car , fcn_emp, fci_emp,lab_emp ,cla_emp ,mai_emp ,fot_emp ) 
+    	values(#{usuario},#{nombre},#{apellidoPaterno},#{apellidoMaterno},#{estadoCivil},#{direccion},#{genero},
+    	#{dni},#{cargo.codigo},#{fechaNacimiento},#{fechaIngreso},#{labores},#{clave},#{email},#{foto})    	
+    </insert>
+      
+  <!-- <insert id="insertar" parameterType="empleado">
+   			INSERT INTO TB_VENDEDOR(nom_ven,ape_ven,gen_ven,cod_dis,fot_ven)
+			values(#{nombre},#{apellido},#{genero},#{distrito.codigo},#{foto})
+  </insert> -->
+  
+  <delete id="eliminar" parameterType="integer">
+ 	 DELETE FROM TB_EMPLEADO WHERE COD_EMP=#{id}
+  </delete>
+  
+  <update id="actualizar" parameterType="empleado">
+  	 		UPDATE TB_EMPLEADO
+   			SET 
+   			usu_emp=#{usuario}, 
+   			nom_emp=#{nombre}, 
+   			app_emp=#{apellidoPaterno},
+   			apm_emp=#{apellidoMaterno},
+   			est_emp=#{estadoCivil},
+   			dir_emp=#{direccion}, 
+  			sex_emp=#{genero}, 
+  			dni_emp=#{dni}, 
+  			cod_car=#{cargo.codigo},
+  			fcn_emp=#{fechaNacimiento}, 
+  			fci_emp=#{fechaIngreso}, 
+  			lab_emp=#{labores}, 
+  			cla_emp=#{clave},
+  			mai_emp=#{email},
+  			fot_emp=#{foto}
+		    WHERE COD_EMP=#{codigo} 
+  </update>
+   
+   
+    
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.UsuarioMapper">
+
+ 
+   <select id="getUltimaFechaAcceso" resultType="string" parameterType="usuario">
+  		 SELECT date_format(fci_emp, '%d/%m/%Y') , COD_EMP, usu_emp, nom_emp, app_emp,apm_emp ,est_emp,dir_emp , sex_emp, dni_emp,cod_car , fcn_emp, lab_emp ,cla_emp ,mai_emp ,fot_emp
+   			FROM TB_EMPLEADO
+			WHERE usu_emp=#{cuenta}
+			AND cla_emp=#{contrasena}			
+			
+   </select>
+   
+   <select id="getNombreAcceso" resultType="string" parameterType="usuario">
+  		 SELECT nom_emp
+  		 FROM TB_EMPLEADO
+			WHERE usu_emp=#{cuenta}
+			AND cla_emp=#{contrasena}			
+			
+   </select>
+    
+    
+    
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+<!-- http://servidor:puerto/<webpath>/NAMESPACE/ACTIONS
+http://servidor:puerto/<webpath>/empleado/inicializar
+http://servidor:puerto/<webpath>/empleado/registrar
+
+http://servidor:puerto/<webpath>/ordenes/inicializar
+http://servidor:puerto/<webpath>/ordenes/registrar
+ -->
+	<package name="struts-empleado" extends="demo" namespace="/empleado">
+	
+		<action name="mainEmpleado" class="action.EmpleadoAction">
+			<result type="tiles">d_mainEmpleado</result>
+		</action>
+		
+		<action name="inicializarEmpleado">		
+			<!-- <interceptor-ref name="i18nStack" /> -->
+			<result type="tiles">d_listadoEmpleado</result>
+		</action>
+		
+		<action name="nuevoEmpleado" class="action.EmpleadoAction">
+			<!-- <interceptor-ref name="i18nStack" /> -->
+			<result type="tiles">d_edicionEmpleado</result>
+		</action>
+		
+		<action name="buscarEmpleado" class="action.EmpleadoAction"
+			method="buscar">
+			<result type="tiles">d_listadoEmpleado</result>
+			<result name="input" type="tiles">d_listadoEmpleado</result>
+		</action>
+		
+		
+		
+		<action name="editarEmpleado" class="action.EmpleadoAction"
+			method="editar">
+			<result type="tiles">d_listadoEmpleado</result>
+			<result name="input" type="tiles">d_edicionEmpleado</result>
+		</action>
+				
+		<!-- Desde aqui cambiar -->
+		
+		
+		
+		
+		<action name="cargarEmpleado" class="action.EmpleadoAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionEmpleado</result>
+		</action>
+		
+		
+	
+		<action name="eliminarEmpleado" class="action.EmpleadoAction"
+			method="eliminar">
+			<result type="tiles">d_listadoEmpleado</result>
+		</action>
+
+		<action name="detalleEmpleado" class="action.EmpleadoAction"
+			method="detalle">
+			<result type="tiles">d_detalleEmpleado</result>
+		</action>
+		
+		<action name="detalleEmpleado2" class="action.EmpleadoAction"
+			method="detalle2">
+			<result type="tiles">d_detalleEmpleado2</result>
+		</action>
+		
+		<!-- 	<action name="cargarEmpleador" class="action.EmpleadoAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_nuevoEmpleado</result>
+		</action>
+		 -->
+		
+		<!-- 
+		FUNCABA
+		<action name="inicializarEmpleado" class="action.EmpleadoAction">
+			<result type="tiles">d_nuevoEmpleado</result>
+		</action> -->
+		
+
+		<!-- 
+		FUNCABA
+		<action name="registrarEmpleado" class="action.EmpleadoAction"
+			method="registrar">
+			<result type="tiles">d_resultadoEmpleado</result>
+			<result name="input" type="tiles">d_nuevoEmpleado</result>
+		</action> -->
+		
+		
+		<!-- <action name="editarVendedor" class="action.VendedorAction"
+			method="editar">
+			<result type="tiles">d_listadoVendedor</result>
+			<result name="input" type="tiles">d_edicionVendedor</result>
+		</action> -->
+		
+	</package>
+	
+		
+		
+
+		
+
+		
+
+		
+
+	
+	
+	
+</struts>

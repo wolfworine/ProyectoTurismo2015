@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.OfertasMapper">
+
+  <resultMap type="ofertas" id="rmOfertasBusqueda">
+   		<id column="Cod_of" property="codigo"/>
+        <result column="Desc_of" property="descripcion"/> 
+        <result column="Duracion_of" property="duracion"/> 
+        <result column="Porcentaje_of" property="porcentaje"/> 
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmOfertasBusqueda" parameterType="ofertas">
+  		 select Cod_of ,Desc_of ,Duracion_of ,Porcentaje_of from tb_Ofertas
+         WHERE Desc_of LIKE #{descripcion}
+  </select> 
+   
+    
+</mapper>

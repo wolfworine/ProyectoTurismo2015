@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.PaquetesMapper">
+
+<resultMap type="paquetes" id="rmPaquetesBusqueda">
+   		<id column="CODIGO_PAQ" property="codigo_paq"/>
+        <result column="ID_DEST" property="id_dest"/> 
+        <result column="DESC_PAQ" property="desc_paq"/> 
+        <result column="ESTADO_PAQ" property="estado_paq"/> 
+        <result column="STOCK_PAQ" property="stock_paq"/> 
+        <result column="TIPO_PAQ" property="tipo_paq"/> 
+        <result column="PRECIO_PAQ" property="precio_paq"/> 
+       
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmPaquetesBusqueda" parameterType="paquetes">
+     SELECT CODIGO_PAQ,ID_DEST,DESC_PAQ,ESTADO_PAQ,STOCK_PAQ,TIPO_PAQ, PRECIO_PAQ  
+     FROM TB_PAQUETES_TURISTICOS
+     WHERE ID_DEST LIKE #{id_dest} or TIPO_PAQ LIKE #{tipo_paq}
+  </select> 
+  
+  
+    <!-- Result Map para la vista de EDITAR -->
+  <resultMap type="paquetes" id="rmPaquetesByPK">
+   		<id column="Codigo_paq " property="codigo_paq"/> 
+   		
+		<result column="Id_Dest " property="id_dest"/> 
+           
+   		<result column="Desc_paq " property="desc_paq"/> 
+        <result column="FecIng_paq " property="fecing_paq"/>
+        
+        <result column="Estado_paq " property="estado_paq"/> 
+        <result column="FecLim_paq " property="fecLim_paq"/> 
+        <result column="Stock_paq " property="stock_paq"/>        
+        <result column="Precio_paq " property="precio_paq"/>
+        <result column="Tipo_paq " property="tipo_paq"/>
+         
+                 
+  </resultMap>      
+  
+   <select id="obtener" resultMap="rmPaquetesByPK" parameterType="integer">			
+			SELECT codigo_paq , id_dest , desc_paq , fecing_paq    ,estado_paq ,fecLim_paq  , stock_paq , precio_paq, tipo_paq    		 
+			FROM tb_Paquetes_Turisticos WHERE Codigo_paq =#{id}
+  </select>
+  
+  
+   <!-- DETALLE DE CLIENTE -->
+  <resultMap type="paquetes" id="rmPaqueteDetalle" >
+  		<id column="Codigo_paq " property="codigo_paq"/> 
+   		
+		<result column="Id_Dest " property="id_dest"/> 
+           
+   		<result column="Desc_paq " property="desc_paq"/> 
+        <result column="FecIng_paq " property="fecing_paq"/>
+        
+        <result column="Estado_paq " property="estado_paq"/> 
+        <result column="FecLim_paq " property="fecLim_paq"/> 
+        <result column="Stock_paq " property="stock_paq"/>        
+        
+        <result column="Precio_paq " property="precio_paq"/>  
+   		 <result column="Tipo_paq " property="tipo_paq"/>          
+   </resultMap>   
+      
+   
+    <select id="obtenerDetalle" resultMap="rmPaqueteDetalle" parameterType="integer">
+  			SELECT codigo_paq , id_dest , desc_paq , fecing_paq    ,estado_paq ,fecLim_paq  , stock_paq , precio_paq ,tipo_paq   		 
+			FROM tb_Paquetes_Turisticos WHERE Codigo_paq =#{codigo_paq}
+  </select>
+  
+  <insert id="insertar" parameterType="paquetes">    
+    	INSERT INTO tb_Paquetes_Turisticos(codigo_paq ,id_dest , desc_paq ,fecing_paq,estado_paq ,fecLim_paq  , stock_paq , precio_paq, Tipo_paq ) 
+    	values(#{codigo_paq},#{id_dest},#{desc_paq},#{fecing_paq},#{estado_paq},#{fecLim_paq},
+    	#{stock_paq},#{precio_paq},#{tipo_paq})    	
+    </insert>
+       
+     
+     <delete id="eliminar" parameterType="integer">
+ 	 DELETE FROM tb_Paquetes_Turisticos WHERE codigo_paq=#{codigo_paq}
+  </delete>
+  
+  <update id="actualizar" parameterType="cliente">
+  	 		UPDATE tb_Paquetes_Turisticos
+   			SET    			
+   			Id_Dest   =#{id_dest}, 
+   			Desc_paq  =#{desc_paq},
+   			FecIng_paq  =#{fecing_paq},
+   			Estado_paq  =#{estado_paq},
+   			FecLim_paq  =#{fecLim_paq}, 
+  			Stock_paq  =#{stock_paq}, 
+  			Precio_paq  =#{precio_paq},
+  			Tipo_paq=#{tipo_paq}
+		    WHERE codigo_paq =#{codigo_paq} 
+  </update>
+    
+  
+   
+    
+</mapper>
+
+
+
+
+  
+  
+  
+
+
+  
+
+
+
+

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.ClienteMapper">
+
+    <!-- BUSCAR CLIENTE -->
+  <resultMap type="cliente" id="rmClienteBusqueda">
+   		<id column="ID_CLI" property="id"/>
+        <result column="NOM_CLI" property="nombre"/> 
+        <result column="APEPAT_CLI" property="apellidoPaterno"/> 
+        <result column="APEMAT_CLI" property="apellidoMaterno"/> 
+        <result column="DIR_CLI" property="direccion"/> 
+        <result column="SEXO_CLI" property="genero"/> 
+        <result column="DNI_CLI" property="dni"/> 
+        <result column="ESTADO_CLI" property="estado"/>
+        <result column="FecNac_cli " property="fecha"/>
+        <result column="Pass_cli" property="pass"/>
+        <result column="Email_cli " property="email"/> 
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmClienteBusqueda" parameterType="cliente">
+  		 SELECT ID_CLI,NOM_CLI,APEPAT_CLI,APEMAT_CLI,DIR_CLI,SEXO_CLI,DNI_CLI,ESTADO_CLI ,FecNac_cli ,Pass_cli ,Email_cli 
+         FROM TB_CLIENTE
+         WHERE NOM_CLI LIKE #{nombre} or APEPAT_CLI LIKE #{apellidoPaterno} or DNI_CLI= #{dni}
+  </select> 
+  
+  <!-- BUSCAR CLIENTE -->
+  
+  
+
+  <!-- Result Map para la vista de EDITAR -->
+  <resultMap type="cliente" id="rmClienteByPK">
+   		<id column="Id_cli" property="id"/> 
+   		
+		<result column="Nom_cli" property="nombre"/> 
+           
+   		<result column="ApePat_cli" property="apellidoPaterno"/> 
+        <result column="ApeMat_cli" property="apellidoMaterno"/>
+        
+        <result column="Dir_cli" property="direccion"/> 
+        <result column="Sexo_cli" property="genero"/> 
+        <result column="Dni_cli" property="dni"/>        
+        
+        <result column="Estado_cli" property="estado"/> 
+        
+         <result column="FecNac_cli" property="fecha"/> 
+        <result column="Pass_cli" property="pass"/>          
+        <result column="Email_cli" property="email"/>      
+                 
+  </resultMap>      
+  
+   <select id="obtener" resultMap="rmClienteByPK" parameterType="integer">			
+			SELECT Id_cli , Nom_cli , ApePat_cli , ApeMat_cli  ,Dir_cli ,Sexo_cli  , Dni_cli , Estado_cli ,FecNac_cli  , Pass_cli , Email_cli 
+   		 FROM TB_CLIENTE WHERE Id_cli =#{id}
+  </select>
+  
+  
+  
+    <!-- DETALLE DE CLIENTE -->
+  <resultMap type="cliente" id="rmClienteDetalle" >
+   		<id column="Id_cli" property="id"/>
+   		
+        <result column="Nom_cli" property="nombre"/> 
+        <result column="ApePat_cli" property="apellidoPaterno"/>
+        <result column="ApeMat_cli" property="apellidoMaterno"/> 
+        <result column="Dir_cli" property="direccion"/> 
+        <result column="Sexo_cli" property="genero"/> 
+        <result column="Dni_cli" property="dni"/> 
+        <result column="Estado_cli" property="estado"/>          
+        <result column="FecNac_cli" property="fecha"/> 
+        <result column="Pass_cli" property="pass"/> 
+        <result column="Email_cli" property="email"/>              
+   </resultMap>   
+      
+   
+    <select id="obtenerDetalle" resultMap="rmClienteDetalle" parameterType="integer">
+  			SELECT id_cli, Nom_cli , ApePat_cli , ApeMat_cli ,Dir_cli  ,Sexo_cli ,Dni_cli , 
+  			Estado_cli , FecNac_cli ,Pass_cli , Email_cli 
+  			FROM TB_CLIENTE
+			WHERE Id_cli=#{id}
+  </select>
+ 
+  
+    <insert id="insertar" parameterType="cliente">    
+    	INSERT INTO TB_CLIENTE(Id_cli ,Nom_cli , ApePat_cli ,ApeMat_cli  ,Dir_cli ,Sexo_cli  , Dni_cli , Estado_cli ,FecNac_cli  , Pass_cli , Email_cli ) 
+    	values(#{id},#{nombre},#{apellidoPaterno},#{apellidoMaterno},#{direccion},#{genero},
+    	#{dni},#{estado},#{fecha},#{pass},#{email})    	
+    </insert>
+    <!-- 
+     <delete id="eliminar" parameterType="integer">
+ 	 DELETE FROM TB_EMPLEADO WHERE COD_EMP=#{id}
+  </delete> -->
+  
+  <update id="actualizar" parameterType="cliente">
+  	 		UPDATE TB_CLIENTE
+   			SET 
+   			Nom_cli =#{nombre}, 
+   			ApePat_cli  =#{apellidoPaterno}, 
+   			ApeMat_cli =#{apellidoMaterno},
+   			Dir_cli =#{direccion},
+   			Sexo_cli =#{genero},
+   			Dni_cli =#{dni}, 
+  			Estado_cli =#{estado}, 
+  			FecNac_cli =#{fecha}, 
+  			Pass_cli =#{pass},
+  			Email_cli =#{email}
+  			
+		    WHERE Id_cli =#{id} 
+  </update>
+
+    
+</mapper>
+
+
+
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.DistritoMapper">
+   
+   
+   <!-- <select id="getDistritos" resultype=distrito >
+   		SELECT  COD_DIS as codigo, DES_DIS as descripcion FROM TB_DISTRITO
+   </select> -->
+    
+    
+     <resultMap type="distrito" id="rmDistritos">
+   		<id column="COD_DIS" property="codigo" jdbcType="VARCHAR"/>
+   		<result column="DES_DIS" property="descripcion" jdbcType="VARCHAR"/>
+   </resultMap>
+   
+   <select id="getDistritos" resultMap="rmDistritos">
+   		SELECT COD_DIS, DES_DIS FROM TB_DISTRITO
+   </select>
+    
+</mapper>

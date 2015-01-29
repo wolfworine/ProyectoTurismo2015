@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration
+2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="d_plantilla" template="/WEB-INF/paginas/plantillas/plantilla.jsp">
+		<put-attribute name="cabecera" value="/WEB-INF/paginas/secciones/cabecera.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/paginas/secciones/menu.jsp"/>
+		<put-attribute name="contenido" value=""/>	
+		<put-attribute name="pie" value="/WEB-INF/paginas/secciones/pie.jsp"/>	
+	</definition>
+	
+	<definition name="d_principal" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/principal.jsp"/>	
+	</definition>
+	
+	<definition name="d_edicionVendedor" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/vendedor/edicion.jsp"/>	
+	</definition>
+	
+	<definition name="d_listadoVendedor" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/vendedor/listado.jsp"/>	
+	</definition>
+	
+	<definition name="d_detalleVendedor" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/vendedor/detalle.jsp"/>	
+	</definition>
+	
+	<definition name="d_nuevoEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/nuevo.jsp"/>	
+	</definition>
+		
+	<definition name="d_mainEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/main.jsp"/>	
+	</definition>
+	
+	<definition name="d_resultadoEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/resultado.jsp"/>	
+	</definition>
+	
+	<!-- EMPLEADO -->
+	
+	<definition name="d_edicionEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/nuevo.jsp"/>	
+	</definition>
+	
+	<definition name="d_listadoEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/listado.jsp"/>	
+	</definition>
+	
+	
+	<definition name="d_detalleEmpleado" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/detalle.jsp"/>	
+	</definition>
+	
+	<definition name="d_detalleEmpleado2" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/empleado/detalle2.jsp"/>	
+	</definition>
+	
+	<!-- CLIENTE -->
+		
+	<definition name="d_listadoCliente" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/cliente/listado.jsp"/>	
+	</definition>
+	
+	<definition name="d_edicionCliente" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/cliente/nuevo.jsp"/>	
+	</definition>	
+	
+	<definition name="d_detalleCliente" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/cliente/detalle.jsp"/>	
+	</definition>
+	
+	
+	<!-- OFERTAS -->
+	<definition name="d_listadoOfertas" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/ofertas/listado.jsp"/>	
+	</definition>
+	
+	<!-- PAGOS -->
+	<definition name="d_listadoPagos" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/pagos/listado.jsp"/>	
+	</definition>
+	
+	<!-- PAQUETES -->
+	<definition name="d_listadoPaquetes" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/paquetes/listado.jsp"/>	
+	</definition>
+	
+	<definition name="d_edicionPaquetes" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/paquetes/nuevo.jsp"/>	
+	</definition>	
+	
+	<definition name="d_detallePaquetes" extends="d_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/paquetes/detalle.jsp"/>	
+	</definition>
+	
+	
+	
+	<!-- WEEEEEEEEEEEEEEEEEEB -->
+	
+	<definition name="w_plantilla" template="/WEB-INF/paginas/web_plantillas/plantilla.jsp">
+		<put-attribute name="cabecera" value="/WEB-INF/paginas/web_secciones/cabecera.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/paginas/web_secciones/menu.jsp"/>
+		<put-attribute name="contenido" value=""/>	
+		<put-attribute name="pie" value="/WEB-INF/paginas/web_secciones/pie.jsp"/>	
+	</definition>
+	
+	<definition name="w_principal" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_principal.jsp"/>	
+	</definition>
+	<definition name="w_formaPago" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/pago.jsp"/>	
+	</definition>
+	<definition name="w_internacionales" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/internacionales.jsp"/>	
+	</definition>
+	<definition name="w_mision" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/mision.jsp"/>	
+	</definition>
+	<definition name="w_nacionales" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/nacionales.jsp"/>	
+	</definition>
+	<definition name="w_oferta" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/oferta.jsp"/>	
+	</definition>
+	<definition name="w_somos" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/quienes_somos.jsp"/>	
+	</definition>
+	<definition name="w_cruceros" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/cruceros.jsp"/>	
+	</definition>
+	
+	<definition name="w_contactanos" extends="w_plantilla">
+		<put-attribute name="contenido" value="/WEB-INF/paginas/web_pagina/contactanos.jsp"/>	
+	</definition>
+	
+	
+	
+	
+</tiles-definitions>

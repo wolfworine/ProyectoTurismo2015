@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.CargoMapper">
+
+    
+   <resultMap type="cargo" id="rmCargos">
+   		<id column="cod_car" property="codigo" jdbcType="VARCHAR"/>
+   		<result column="des_car" property="descripcion" jdbcType="VARCHAR"/>
+   </resultMap>
+   
+   <select id="getCargos" resultMap="rmCargos">
+   		SELECT COD_CAR, DES_CAR FROM TB_CARGO
+   </select>
+    
+</mapper>

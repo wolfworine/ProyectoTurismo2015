@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.PagosMapper">
+
+ <resultMap type="pagos" id="rmPagosBusqueda">
+   		<id column="CODIGO_VENT" property="codigo_ven"/>
+        <result column="CODIGO_PAQ" property="codigo_paq"/> 
+        <result column="DESC_VENT" property="descripcion_ven"/> 
+        <result column="FEC_VENT" property="fecha_ven"/> 
+        <result column="ID_CLI" property="codigo_cli"/> 
+    
+       
+  </resultMap>
+  
+    <select id="buscar" resultMap="rmPagosBusqueda" parameterType="pagos">
+     
+     SELECT CODIGO_VENT,CODIGO_PAQ,DESC_VENT,FEC_VENT,ID_CLI FROM TB_VENTA
+     WHERE CODIGO_VENT LIKE #{id_dest} 
+  </select> 
+   
+    
+</mapper>

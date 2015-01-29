@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts-cliente" extends="demo" namespace="/cliente">	
+
+	
+
+		<action name="inicializarCliente" class="action.ClienteAction">		
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_listadoCliente</result>
+		</action>		
+		<action name="nuevoCliente" class="action.ClienteAction">
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_edicionCliente</result>
+		</action>
+		<action name="buscarCliente" class="action.ClienteAction"
+			method="buscar">
+			<result type="tiles">d_listadoCliente</result>
+			<result name="input" type="tiles">d_listadoCliente</result>
+		</action>
+		<action name="cargarCliente" class="action.ClienteAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionCliente</result>
+		</action>
+		<action name="editarCliente" class="action.ClienteAction"
+			method="editar">
+			<result type="tiles">d_listadoCliente</result>
+			<result name="input" type="tiles">d_edicionCliente</result>
+		</action>
+		<action name="eliminarCliente" class="action.ClienteAction"
+			method="eliminar">
+			<result type="tiles">d_listadoCliente</result>
+		</action>
+		<action name="detalleCliente" class="action.ClienteAction"
+			method="detalle">
+			<result type="tiles">d_detalleCliente</result>
+		</action>		
+							
+	</package>
+</struts>

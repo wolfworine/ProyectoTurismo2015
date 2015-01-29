@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="persistencia.mybatis.mapper.VendedorMapper">
+    
+  
+   <resultMap type="vendedor" id="rmVendedorBusqueda">
+   		<id column="COD_VEN" property="codigo"/>
+        <result column="NOM_VEN" property="nombre"/> 
+        <result column="APE_VEN" property="apellido"/> 
+  </resultMap>
+  
+  <resultMap type="vendedor" id="rmVendedorByPK">
+   		<id column="COD_VEN" property="codigo"/>
+        <result column="NOM_VEN" property="nombre"/> 
+        <result column="APE_VEN" property="apellido"/>
+        <result column="GEN_VEN" property="genero"/> 
+		<association property="distrito" javaType="distrito">
+            <result column="COD_DIS" property="codigo"/>
+        </association>   
+  </resultMap>
+    
+  <resultMap type="vendedor" id="rmVendedorDetalle" >
+   		<id column="COD_VEN" property="codigo"/>
+        <result column="NOM_VEN" property="nombre"/> 
+        <result column="APE_VEN" property="apellido"/>
+        <result column="GEN_VEN" property="genero"/> 
+        <result column="FOT_VEN" property="foto"/> 
+        
+        <association property="distrito" javaType="distrito">
+            <result column="DES_DIS" property="descripcion"/>
+        </association>  
+   </resultMap> 
+  
+  <select id="buscar" resultMap="rmVendedorBusqueda" parameterType="vendedor">
+  		 SELECT COD_VEN, NOM_VEN, APE_VEN
+   		 FROM TB_VENDEDOR
+   		 WHERE NOM_VEN LIKE #{nombre}
+  </select>
+  
+  <select id="obtener" resultMap="rmVendedorByPK" parameterType="integer">
+  			SELECT COD_VEN, NOM_VEN, APE_VEN,
+		    GEN_VEN, COD_DIS 
+			FROM TB_VENDEDOR
+			WHERE COD_VEN=#{codigo}
+  </select>
+  
+  <select id="obtenerDetalle" resultMap="rmVendedorDetalle" parameterType="integer">
+  			SELECT v.COD_VEN, v.NOM_VEN, v.APE_VEN,
+		    v.GEN_VEN, d.DES_DIS, v.FOT_VEN
+			FROM TB_VENDEDOR v, TB_DISTRITO d
+			WHERE v.COD_DIS  = d.COD_DIS
+			and v.COD_VEN=#{codigo}
+  </select>
+  
+  <insert id="insertar" parameterType="vendedor">
+   			INSERT INTO TB_VENDEDOR(nom_ven,ape_ven,gen_ven,cod_dis,fot_ven)
+			values(#{nombre},#{apellido},#{genero},#{distrito.codigo},#{foto})
+  </insert>
+  
+  <delete id="eliminar" parameterType="integer">
+ 	 DELETE FROM TB_VENDEDOR WHERE COD_VEN=#{id}
+  </delete>
+  
+  <update id="actualizar" parameterType="vendedor">
+  	 		UPDATE TB_VENDEDOR
+   			SET NOM_VEN=#{nombre}, 
+   			APE_VEN=#{apellido},
+		    GEN_VEN=#{genero},
+		    COD_DIS=#{distrito.codigo}
+		    WHERE COD_VEN=#{codigo} 
+  </update>
+    
+</mapper>

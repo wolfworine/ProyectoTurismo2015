@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="struts-pagos" extends="demo" namespace="/pagos">	
+
+		<action name="inicializarPagos">		
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_listadoPagos</result>
+		</action>
+		
+		<action name="nuevoPagos" class="action.PagosAction">
+			<interceptor-ref name="i18nStack" />
+			<result type="tiles">d_edicionPagos</result>
+		</action>
+
+		<action name="buscarPagos" class="action.PagosAction"
+			method="buscar">
+			<result type="tiles">d_listadoPagos</result>
+			<result name="input" type="tiles">d_listadoPagos</result>
+		</action>
+
+		<action name="cargarPagos" class="action.PagosAction">
+			<interceptor-ref name="pitParamsPrepareParamsStack" />
+			<result type="tiles">d_edicionPagos</result>
+		</action>
+
+		<action name="editarPagos" class="action.PagosAction"
+			method="editar">
+			<result type="tiles">d_listadoPagos</result>
+			<result name="input" type="tiles">d_edicionPagos</result>
+		</action>
+
+		<action name="eliminarPagos" class="action.PagosAction"
+			method="eliminar">
+			<result type="tiles">d_listadoPagos</result>
+		</action>
+
+		<action name="detallePagos" class="action.PagosAction"
+			method="detalle">
+			<result type="tiles">d_detallePagos</result>
+		</action>
+	</package>
+</struts>
